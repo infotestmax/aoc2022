@@ -264,16 +264,14 @@ tail_visited = {"0,0": True} # First tail position
 
 def update_tail_position():
     global H_, T_, tail_visited
-    if T_[0] == H_[0]:
-        if abs(H_[1]-T_[1]) > 1:
+    if T_[0] == H_[0] and abs(H_[1]-T_[1]) > 1:
             T_[1] = H_[1] - 1 if H_[1]>T_[1] else H_[1] + 1
-    elif T_[1] == H_[1]:
-        if abs(H_[0]-T_[0]) > 1:
+    elif T_[1] == H_[1] and abs(H_[0]-T_[0]) > 1:
             T_[0] = H_[0] - 1 if H_[0]>T_[0] else H_[0] + 1
-    else: # Cas ou la formation est diagonale
-        if (abs(H_[1]-T_[1]) + abs(H_[0]-T_[0])) > 2:
-            T_[0] = T_[0] - 1 if H_[0] < T_[0] else T_[0] + 1
-            T_[1] = T_[1] - 1 if H_[1] < T_[1] else T_[1] + 1
+    elif (abs(H_[1]-T_[1]) + abs(H_[0]-T_[0])) > 2:
+        # Cas ou la formation est diagonale
+        T_[0] = T_[0] - 1 if H_[0] < T_[0] else T_[0] + 1
+        T_[1] = T_[1] - 1 if H_[1] < T_[1] else T_[1] + 1
     # print(f"T_: {T_}")
     tail_visited[",".join([str(T_[0]), str(T_[1])])] = True
 
@@ -745,16 +743,14 @@ tail_visited = {"0,0": True}  # First tail 9's position
 
 def update_tails_position(r_, t_):
     # print(r_, t_)
-    if t_[0] == r_[0]:
-        if abs(r_[1] - t_[1]) > 1:
-            t_[1] = r_[1] - 1 if r_[1] > t_[1] else r_[1] + 1
-    elif t_[1] == r_[1]:
-        if abs(r_[0] - t_[0]) > 1:
-            t_[0] = r_[0] - 1 if r_[0] > t_[0] else r_[0] + 1
-    else:  # Cas ou la formation est diagonale
-        if (abs(r_[1] - t_[1]) + abs(r_[0] - t_[0])) > 2:
-            t_[0] = t_[0] - 1 if r_[0] < t_[0] else t_[0] + 1
-            t_[1] = t_[1] - 1 if r_[1] < t_[1] else t_[1] + 1
+    if t_[0] == r_[0] and  abs(r_[1] - t_[1]) > 1:
+        t_[1] = r_[1] - 1 if r_[1] > t_[1] else r_[1] + 1
+    elif t_[1] == r_[1] and abs(r_[0] - t_[0]) > 1:
+        t_[0] = r_[0] - 1 if r_[0] > t_[0] else r_[0] + 1
+    elif (abs(r_[1] - t_[1]) + abs(r_[0] - t_[0])) > 2:
+        # Cas ou la formation est diagonale
+        t_[0] = t_[0] - 1 if r_[0] < t_[0] else t_[0] + 1
+        t_[1] = t_[1] - 1 if r_[1] < t_[1] else t_[1] + 1
 
 def update_tails():
     global h_, ts_
