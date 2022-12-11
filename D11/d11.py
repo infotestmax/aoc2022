@@ -277,9 +277,7 @@ for _ in range(len(inputs)//7 + 1):
     # print(f"-> input {inputs[next:next+7]}")
     number = int(inputs[next].split(' ')[-1][:-1])
     n_plus_1 = inputs[next+1].split(' ')
-    # print(n_plus_1)
     items = [int(''.join(n_plus_1[n_][:-1])) if n_plus_1[n_][-1]==',' else int(n_plus_1[n_]) for n_ in range(2,len(n_plus_1))]
-    # items = [n_[:-1] if n_[-1]==',' else n_ for n_ in range(1,len(n_plus_1))]
     operation = inputs[next+2].split('=')[-1].strip()
     test = int(inputs[next+3].split(' ')[-1])
     destinations = (int(inputs[next+4].split(' ')[-1]), int(inputs[next+5].split(' ')[-1]))
@@ -400,12 +398,9 @@ Worry levels are no longer divided by three after each item is inspected; you'll
 monkeys = []
 next = 0
 for _ in range(len(inputs)//7 + 1):
-    # print(f"-> input {inputs[next:next+7]}")
     number = int(inputs[next].split(' ')[-1][:-1])
     n_plus_1 = inputs[next+1].split(' ')
-    # print(n_plus_1)
     items = [int(''.join(n_plus_1[n_][:-1])) if n_plus_1[n_][-1]==',' else int(n_plus_1[n_]) for n_ in range(2,len(n_plus_1))]
-    # items = [n_[:-1] if n_[-1]==',' else n_ for n_ in range(1,len(n_plus_1))]
     operation = inputs[next+2].split('=')[-1].strip()
     test = int(inputs[next+3].split(' ')[-1])
     destinations = (int(inputs[next+4].split(' ')[-1]), int(inputs[next+5].split(' ')[-1]))
@@ -413,15 +408,10 @@ for _ in range(len(inputs)//7 + 1):
     next += 7
 
 for i_ in range(10_000):
-    # print(f"=== Before action {i_}")
     for monkey in monkeys:
-        # print(monkey.to_string())
         for _ in range(len(monkey.items)):
             number, item = monkey.inpect_first_and_tell_who_to_give()
             monkeys[number].items.append(item)
-            # print(monkeys[number].to_string())
-        # print('===--> After action')
-        # print(monkey.to_string())
 
 print('==> After full process part 2')
 for monkey in monkeys:
